@@ -1,28 +1,5 @@
 
 /**
- * @function WIP
- * @returns { string } 
- */
-function uuID() {
-  // to do
-  return Deno.uid();
-}
-
-/**
- * @function WIP
- * @returns { string } 
- */
-function signReqs(r) {
-  // to do
-  return "jgfgg"
-}
-/** @param { Object } ping */
-const ping = {
-  id: Deno.uid(),
-  method: "ping"
-}
-
-/**
  * @function handle
  * @param {Deno.Conn } conn 
  */
