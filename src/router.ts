@@ -49,23 +49,29 @@ router
   })
   .post("/book", async (context: RouterContext<"/book">) => {
     console.log("post book");
-    if (!context.request.hasBody) {
+    if (!context.request.hasBody)
+    {
       context.throw(Status.BadRequest, "Bad Request");
     }
     const body = context.request.body();
     let book: Partial<Book> | undefined;
-    if (body.type === "json") {
+    if (body.type === "json")
+    {
       book = await body.value;
-    } else if (body.type === "form") {
+    } else if (body.type === "form")
+    {
       book = {};
-      for (const [key, value] of await body.value) {
+      for (const [key, value] of await body.value)
+      {
         book[key as keyof Book] = value;
       }
-    } else if (body.type === "form-data") {
+    } else if (body.type === "form-data")
+    {
       const formData = await body.value.read();
       book = formData.fields;
     }
-    if (book) {
+    if (book)
+    {
       context.assert(book.id && typeof book.id === "string", Status.BadRequest);
       books.set(book.id, book as Book);
       context.response.status = Status.OK;
@@ -76,9 +82,11 @@ router
     context.throw(Status.BadRequest, "Bad Request");
   })
   .get("/book/:id", (context) => {
-    if (context.params && books.has(context.params.id)) {
+    if (context.params && books.has(context.params.id))
+    {
       context.response.body = books.get(context.params.id);
-    } else {
+    } else
+    {
       return notFound(context);
     }
   });
@@ -90,12 +98,10 @@ app.use(async (context, next) => {
   await next();
   const rt = context.response.headers.get("X-Response-Time");
   console.log(
-    `${green(context.request.method)} ${
-      cyan(decodeURIComponent(context.request.url.pathname))
-    } - ${
-      bold(
-        String(rt),
-      )
+    `${green(context.request.method)} ${cyan(decodeURIComponent(context.request.url.pathname))
+    } - ${bold(
+      String(rt),
+    )
     }`,
   );
 });
@@ -110,20 +116,26 @@ app.use(async (context, next) => {
 
 // Error handler
 app.use(async (context, next) => {
-  try {
+  try
+  {
     await next();
-  } catch (err) {
-    if (isHttpError(err)) {
+  } catch (err)
+  {
+    if (isHttpError(err))
+    {
       context.response.status = err.status;
       const { message, status, stack } = err;
-      if (context.request.accepts("json")) {
+      if (context.request.accepts("json"))
+      {
         context.response.body = { message, status, stack };
         context.response.type = "json";
-      } else {
+      } else
+      {
         context.response.body = `${status} ${message}\n\n${stack ?? ""}`;
         context.response.type = "text/plain";
       }
-    } else {
+    } else
+    {
       console.log(err);
       throw err;
     }

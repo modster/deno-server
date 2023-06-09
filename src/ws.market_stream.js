@@ -1,15 +1,68 @@
-/**
- * @file ws.market_stream.js
- * @description - seperate websocket for market data streaming
+// ws.market_stream.js
+
+const params = ["btcusdt@trade", "btcusdt@depth"];
+
+/** 
+ * Subscribe to a market data stream
+ * Request: {
+ *   "method": "SUBSCRIBE",
+ *   "params": [
+ *    "btcusdt@aggTrade",
+ *    "btcusdt@depth"
+ *   ],
+ *   "id": 1
+ * }
+ * 
+ * Response: {
+ *    "result": null,
+ *    "id": 1
+ * }
  */
+// Streams can be accessed either in a single raw stream or in a combined stream.
+// The base endpoint is: wss://stream.binance.com:9443
+// Raw streams are accessed at /ws/<streamName>
+
+class streamMarketData {
+  params = 
+  constructor( method,  ) {
+    this.method = method, //["SUBSCRIBE", "UNSUBSCRIBE", "LIST_SUBSCRIPTIONS"]
+    this.id = id,
+  }
+  getId = this.id;
+
+  setId: self.crypto.randomUUID()
 
 
-/**
- *  subscribe
- */
 const subscribe = {
+  method: "SUBSCRIBE",
+  params: [`${symbol}@aggTrade`,`${symbol}@depth`],
+  id: crypto.uuId(),
+};
 
-}
+  
+  // Request
+  const unsubscribe = {
+  {
+    method: "UNSUBSCRIBE",
+    params: 
+    id: self.crypto.randomUUID();
+  }
+  
+//   Listing Subscriptions
+//   Response
+  
+//     {
+//       "result": [
+//         "btcusdt@aggTrade"
+//       ],
+//       "id": 3
+//     }
+//   Request
+//   {
+//   "method": "LIST_SUBSCRIPTIONS",
+//   "id": 3
+//   }
+// }
 
 /**
  *  unsubscribe
@@ -26,39 +79,6 @@ const subscribe = {
  */
 
 
-// The base endpoint is: wss://stream.binance.com:9443 or wss://stream.binance.com:443
-// Streams can be accessed either in a single raw stream or in a combined stream.
-// Users can listen to multiple streams.
-// Raw streams are accessed at /ws/<streamName>
-// Combined streams are accessed at /stream?streams=<streamName1>/<streamName2>/<streamName3></streamName3>
-
-const symbol = "btcusdt";
-const symbols = [];
-
-/**
- * @name rawTradeStream
- * @host wss://stream.binance.com:9443/ws/<symbol>@trade
- * @description 
- * - This stream pushes raw trade information. 
- * - Each trade has a unique buyer and seller.
- * - Update speed is real-time.
- */
-async function rawTradeStream ( symbol ) {
-  socket.send(`wss://stream.binance.com:9443/ws/${symbol}@trade`);
-/** @returns  {
-  "e": "trade",     // Event type
-  "E": 123456789,   // Event time
-  "s": "BNBBTC",    // Symbol
-  "t": 12345,       // Trade ID
-  "p": "0.001",     // Price
-  "q": "100",       // Quantity
-  "b": 88,          // Buyer order ID
-  "a": 50,          // Seller order ID
-  "T": 123456785,   // Trade time
-  "m": true,        // Is the buyer the market maker?
-  "M": true         // Ignore
-}
-*/
 
 
 /**

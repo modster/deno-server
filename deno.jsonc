@@ -1,0 +1,15 @@
+{
+  // "importMap": "./import_map.json",
+  "imports": {
+    "std/": "https://deno.land/std@0.191.0/",
+    "fmt/": "https://deno.land/std@0.191.0/fmt/",
+    "oak": "https://deno.land/x/oak@v12.2.0/mod.ts",
+    "lodash": "npm:lodash@^4.17"
+    // "lodash": "https://esm.sh/lodash@4.17.21"
+  },
+  "tasks": {
+    "dev": "deno run --watch main.ts",
+    "fmt": "",
+    "lint": ""
+  }
+}
