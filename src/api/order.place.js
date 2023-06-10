@@ -1,8 +1,8 @@
-import {}
+import { load } from "https://deno.land/std@0.177.1/dotenv/load.ts";
+const log = console.log,
+  apiKey = Deno.env.get("TESTNET_APIKEY"),
+  secretKey = Deno.env.get("TESTNET_SECRET");
 
-
-const apiKey = Deno.env.get("TESTNET_APIKEY");
-const secretKey = Deno.env.get("TESTNET_SECRET");
 // const id = crypto.randomUUID();
 // const method = "order.place";
 // const symbol = "BTCUSDT"; // exchange.info

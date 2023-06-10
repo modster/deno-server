@@ -70,7 +70,7 @@ router
     ws.onmessage = (m) => {
       log("Got message from client: ", m.data);
       ws.send(m.data as string);
-      // ws.close();
+      ws.close();//<---------------------------------------------------!
     };
 
     ws.onclose = () => log("Disconncted from client");
